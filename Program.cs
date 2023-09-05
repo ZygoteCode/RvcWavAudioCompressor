@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading;
 
 public class Program
 {
@@ -27,7 +28,7 @@ public class Program
         {
             if (Path.GetExtension(file).ToLower().Equals(".wav"))
             {
-                RunFFMpeg($"-i \"{Path.GetFullPath(file)}\" -af aresample=osf=s16:dither_method=triangular_hp -sample_fmt s16 -ar 48000 -ac 1 -b:a 96k -acodec pcm_s16le -filter:a \"highpass=f=50, lowpass=f=15000\" -map a \"{Path.GetFullPath("outputs")}\\{Path.GetFileName(file)}\"");
+                new Thread(() => RunFFMpeg($"-i \"{Path.GetFullPath(file)}\" -af aresample=osf=s16:dither_method=triangular_hp -sample_fmt s16 -ar 48000 -ac 1 -b:a 96k -acodec pcm_s16le -filter:a \"highpass=f=50, lowpass=f=15000\" -map a \"{Path.GetFullPath("outputs")}\\{Path.GetFileName(file)}\"")).Start(); ;
             }
         }
     }
