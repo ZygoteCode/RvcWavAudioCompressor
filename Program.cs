@@ -7,7 +7,7 @@ public class Program
 {
     public static void Main()
     {
-        Console.Title = "RvcWavAudioCompressor | Made by https://github.com/GabryB03/";
+        Console.Title = "RvcWavAudioCompressor | Made by https://github.com/ZygoteCode/";
 
         if (!Directory.Exists("inputs"))
         {
